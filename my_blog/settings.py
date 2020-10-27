@@ -28,7 +28,7 @@ SECRET_KEY = 'B925C307F0626Df6Fabdabb49D209C28Ec4E20A0B013551E2F9Fa71831E9D95D'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = [hanifa-blog.herokuapp.com]
+ALLOWED_HOSTS = [hanifatry.herokuapp.com]
 
 
 # Application definition
