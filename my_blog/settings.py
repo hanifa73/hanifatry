@@ -8,7 +8,10 @@ https://docs.djangoproject.com/en/3.1/topics/settings/
 
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
+
 """
+
+import django_heroku
 import os
 from pathlib import Path
 
@@ -20,12 +23,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'sz$(r#w++k3vw^xwmd=*umg^4yda+5b%e5!o4n96)zu$h&*hq%'
+SECRET_KEY = 'B925C307F0626Df6Fabdabb49D209C28Ec4E20A0B013551E2F9Fa71831E9D95D'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [hanifablog.herokuapp.com]
 
 
 # Application definition
@@ -46,6 +49,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.csrf.CsrfViewMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -121,15 +125,21 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
-STATIC_URL = '/static/'
-  # STATICFILES_DIRS=[
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-  # os.path.join(BASE_DIR,"static"),
+STATIC_URL = '/static/'
+STATICFILES_DIRS=[
+
+    os.path.join(BASE_DIR,'static'),
     
-   #]
+  ]
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'  
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 LOGIN_REDIRECT_URL='home'
 LOGIN_URL='login'
 MEDIA_ROOT=os.path.join(BASE_DIR,'media')
 MEDIA_URL='/media/'
+
+django_heroku.settings(locals())
