@@ -1,0 +1,10 @@
+
+
+<ul class="list-group-flush p-2  " >
+    {%for post in l_posts %}
+    <a class="text-dark" href="{% url 'detail' post.pk %}">
+        <li class="list-group-item ff ">{{post.title}}</li>
+    </a>
+
+    {% endfor %}
+</ul>

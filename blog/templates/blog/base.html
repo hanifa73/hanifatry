@@ -1,0 +1,182 @@
+{% load static %}
+
+{% load post_tag %}
+<!DOCTYPE html>
+
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <link rel="stylesheet" href="{%static 'blog/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{%static 'blog/css/main.css' %}">
+    <link rel="shortcut icon" href="{%static 'blog/images/circled.png'%}">
+    <link rel="shortcut icon" href="{%static 'blog/images/Asset 1.png'%}">
+    <script src="{%static 'blog/js/jquery-3.5.1.slim.min.js' %}"></script>
+    <script src="{%static 'blog/js/popper.min.js' %}"></script>
+    <script src="{%static 'blog/js/fontawesome-all.min.js' %}"></script>
+    <script src="{%static 'blog/js/bootstrap.min.js' %}"></script>
+    <!-- <script src=" https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js " integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script> -->
+    
+    {%if title %}
+      <title>{{title}}</title>
+       {% else %}
+       <title>document</title>
+     {% endif %}
+</head>
+<body>
+    <header>
+      <!-- start nav bar -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+            <a class="navbar-brand" href="#">
+              <img src="{%static 'blog/images/circled.png'%}" alt="شعار"width="50px">My work</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+          
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ">
+                          <li class="nav-item active">
+                            <a class="nav-link" href="{%url 'home'%}">الرئيسية<span class="sr-only">(current)</span></a>
+                          </li>
+                            
+                            <li class="nav-item dropdown">
+                              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                               المقالات
+                              </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{% url 'detail' 1 %}">المقالة الاولى</a>
+                                <a class="dropdown-item" href="{% url 'detail' 2 %}">المقالة الثانية</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="{% url 'detail' 3 %}">المقالة الثالثة</a>
+                            </div>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{%url 'about' %}"> من انا </a>
+                              </li>
+                                     
+                    </ul>
+
+                    {%if user.is_authenticated %}
+                         <ul class="navbar-nav mr-auto">
+                            <li class="nav-item "><a class="nav-link" href="{%url 'new_post'%}">اضافة جديدة</a></li>
+                            <li class="nav-item "><a class="nav-link" href="{%url 'profile'%}"> الملف الشخصي</a> </li>
+                            <li class="nav-item "><a class="nav-link" href="{% url 'logout' %}">تسجيل خروج</a></li>
+
+                            
+                       </ul>    
+                    {% else %}
+                         <ul class="navbar-nav mr-auto">
+                            <li class="nav-item "><a class="nav-link" href="{%url 'login'%}">تسجيل دخول</a></li>
+                           
+                            <li class="nav-item "><a class="nav-link" href="{%url 'register'%}"> تسجيل</a> </li>
+                       </ul>  
+
+                    {% endif %}
+                    
+                        
+            </div>
+          </nav>
+          <!-- end nav bar -->
+    </header>
+
+    <section>
+      <div class="container">
+        <div class="row mt-4">
+          
+          <div class="col-md-8">
+              
+           {%block content%}
+
+           {%endblock%}
+           </div>
+          
+            <div class="col-md-4">
+              <div class="card mb-3">
+                <h3 class="text-center bg-secondary text-light P-2">اخر التدوينات</h3>
+                {% latest_posts %}
+           </div>
+           <div class="card mb-3">
+                <h3 class="text-center bg-secondary text-light P-2">اخر التعليقات</h3>
+                {% latest_comments %}
+              
+            </div>
+
+            
+          
+      </div>
+      <div><i class="fas fa-home"></i>   اهلا ومرحبا بكم </div>
+        </div>
+
+        </section>
+        <footer class="bg-secondary">
+          <div class="container-fluid">
+              <div class="row">
+                <div class="col-md">
+                   <div class="card-group ">
+                     <div class="card m-3">
+                        <h3 class="card-title text-center border-bottom p-2 m-3">من انا</h3>
+                        <div class="card-body"> 
+                           <div class="text-center">
+                            <img src="{%static 'blog\images\circled.png'%}" alt="circled" width="80px">
+                           </div>
+                            حنيفة ابراهيم تصميم ويب
+                             واعلانات وهذا الموقع ,
+                              للرسم والانيميشن وتصميم واجهات برمجية
+                              انشاء نموذج اولي باستخدام فيجما
+
+                         </div>
+                     </div>
+                     <div class="card m-3">
+                      <h3 class="card-title text-center border-bottom p-2 m-3">مواقعي المفضلة</h3>
+                          <div class="card-body"> 
+                             <div class="text-center">
+                              <img src="{%static 'blog\images\circled.png'%}" alt="circled" width="80px">
+                             </div>
+                                <ul>
+                                  <li> <a href="https://www.youtube.com/c/YesImaDesigner">الاول</a></li>
+                                  <li> <a href="https://www.youtube.com/channel/UCX4mqbvv5lGqLpI4FYlJt4w">الثاني</a></li>         
+                                  <li> <a href="https://www.youtube.com/c/DaniilGartman">الثالث</a></li>         
+                                  
+                                </ul>
+                          </div>
+                    </div>
+                   <div class="card m-3">
+                    <h3 class="card-title text-center border-bottom p-2 m-3">وسائل التواصل الاجتماعي</h3>
+                      <h4 class="card-body text-center"> 
+                           <div class="text-center">
+                            <img src="{%static 'blog\images\circled.png'%}" alt="circled" width="80px">
+                           </div>
+                             <a class="text-secondary" href=https://www.facebook.com/profile.php?id=100003351767811"><i class="fab fa-facebook"></i></a>
+                              <a class="text-secondary"href="https://twitter.com/NaHanifa"><i class="fab fa-twitter"></i></a>
+                             <a class="text-secondary"href="https://linkedin.com/in/hanifaalakki"><i class="fab fa-linkedin-in"></i></a>
+                            <a class="text-secondary"href="https://youtube.com/user/akkihanifa"> <i class="fab fa-youtube"></i></a>
+                             <a class="text-secondary"href="https://instagram.com/h0anifa"><i class="fab fa-instagram"></i></a>
+                             
+                             
+                          </h4>
+                     </div>
+                   </div>
+                </div>
+              </div>
+              <div class="row p-2">
+                <div class="col-md text-center">
+                  <small class="text-light ">
+                    &copy;جميع الحقوق محفوظة
+                  </small>
+                </div>
+              </div>
+          </div>
+        </footer>
+    
+
+
+
+
+
+    
+
+
+</body>
+</html >

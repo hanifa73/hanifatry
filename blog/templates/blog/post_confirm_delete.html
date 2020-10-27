@@ -1,0 +1,24 @@
+{%extends 'blog/base.html'%} 
+{% load crispy_forms_tags %}
+{%load static%} 
+{%block content%}
+
+<style>.btn-del{text-align: center ;
+    margin-right: 3em;}</style>
+
+   
+           
+        <div class="border mb-2 p-2">
+            <form method="POST">
+               <legend class="border-bottom pb-2 mb-1 " > هل انت متاكد من حذف "{{object.title}}"؟ </legend>
+
+           
+             {% csrf_token%}
+            
+             <input class="btn btn-danger mb-2 btn-del" type="submit" value="حذف">
+             <a  class="btn btn-info mb-2 btn-del"href="{% url 'detail' object.id %} ">تراجع</a>
+           </form>
+        </div>
+    
+
+{%endblock%}

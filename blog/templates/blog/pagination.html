@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+{%load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="{%static 'blog/js/fontawesome-all.min.js' %}"></script>
+ 
+</head>
+<body>
+    
+                <div class=" border border-dark pt-3  pb-2 mb-4 text-center">
+                    {%if page.has_next %}
+                    <a class="btn btn-secondary" href="?page={{page.next_page_number}}">التالي<i class="fas fa-arrow-left"></i></a>
+                    {%else %}
+                    <a class="btn btn-secondary disabled  " href="#">التالي<i class="fas fa-arrow-left"></i></a>
+                    {% endif %}
+                         <span class="pr-4 pl-4">صفحة{{page.number}} من {{page.paginator.num_pages}}</span>
+
+                    {%if page.has_previous %}
+                      <a class="btn btn-secondary" href="?page={{page.previous_page_number}}"><i class="fas fa-arrow-right"></i> السابق</a>
+                    {%else%}
+                     <a class="btn btn-secondary disabled" href="#"> <i class="fas fa-arrow-right"></i> السابق</a>
+                    {% endif %}
+                </div>
+
+</body>
+</html>

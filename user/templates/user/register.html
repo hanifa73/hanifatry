@@ -1,0 +1,24 @@
+{%extends 'blog/base.html'%} 
+{% load crispy_forms_tags %}
+{%load static%} 
+{%block content%}
+
+
+
+   
+           
+        <div class="border mb-2 p-2">
+               <legend class="border-bottom pb-2 mb-1 " >التسجيل</legend>
+
+           <form action=""   method="POST">
+             {% csrf_token%}
+             {{form|crispy}}
+             <input class="btn btn-success mb-2" type="submit" value="تسجيل">
+           </form>
+        </div>
+     <div class="border-top mt-1 pb-3">
+    <small> اذا كان لديك حساب من قبل فيمكنك <a href="{% url 'login' %}">تسجيل الدخول</a> </small>
+   </div>
+
+
+{%endblock%}

@@ -1,0 +1,28 @@
+
+
+{%extends 'blog/base.html'%} 
+
+ {%load static%} 
+{%block content%}
+{%if messages %}
+{%for message in messages %}
+  <div class="alert alert-success">{{message}}</div>
+{% endfor%}
+{%endif%}
+
+{% for post in posts %}
+<div class="border border-success p-3 mb-3" >
+  <h3>
+    <img class="rounded-circle border m-2" width="70px"  src="{{post.author.profile.image.url}} " alt="صورة" >
+    <span class="text-secondary">نشر في{{post.post_date|date:'d-m-Y'}}</span><br>
+    <a class="text-dark"href="{% url 'detail' post.pk %}">{{post.title}}</a>
+    <p>{{post.content}}</p>
+
+  </h3>
+</div>
+{% endfor %}
+
+
+{% include 'blog/pagination.html' with page=posts %}
+
+{%endblock content%}

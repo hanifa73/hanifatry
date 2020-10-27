@@ -1,0 +1,39 @@
+@font-face{
+    font-family: 'Tajawal';
+    src:url('../fonts/Tajawal-Regular.ttf') format("truetype"),
+    local('Tajawal');
+
+}
+html,body{
+    direction: rtl;
+    text-align: right;
+}
+
+
+body{font-family: 'Tajawal',sans-serif;
+        
+}
+h3{font-size: 1.3em;}
+
+.bg-secondary{background-color:#e83e8c!important;}
+.bg-light{background-color:rgb(165, 97, 123) !important;}
+
+.dropdown-menu,.dropdown-item{
+    text-align: right;
+          }
+
+.ff{color: rgb(25, 231, 87);}
+ .cc3{
+     border: dashed rgb(224, 109, 219)  ;
+     -webkit-box-shadow: -4px 10px 17px 0px rgba(224,195,224,1);
+     -moz-box-shadow: -4px 10px 17px 0px rgba(224,195,224,1);
+     box-shadow: -4px 10px 17px 0px rgba(224,195,224,1);
+     
+      }
+    
+    .cc1{
+        border: 1px dashed rgb(23, 24, 123);
+        
+            }
+            
+.btn-editing {float: left;}          
